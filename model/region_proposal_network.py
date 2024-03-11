@@ -98,7 +98,7 @@ class RegionProposalNetwork(nn.Module):
                 Its shape is :math:`(H W A, 4)`.
 
         """
-        n, _, hh, ww = x.shape
+        n, _, hh, ww = x.shape # x是特征图
         anchor = _enumerate_shifted_anchor(
             np.array(self.anchor_base),
             self.feat_stride, hh, ww)
@@ -157,7 +157,7 @@ def _enumerate_shifted_anchor(anchor_base, feat_stride, height, width):
     K = shift.shape[0]
     anchor = anchor_base.reshape((1, A, 4)) + \
              shift.reshape((1, K, 4)).transpose((1, 0, 2))
-    anchor = anchor.reshape((K * A, 4)).astype(np.float32)
+    anchor = anchor.reshape((K * A, 4)).astype(np.float32) # K*A=9*height*width
     return anchor
 
 

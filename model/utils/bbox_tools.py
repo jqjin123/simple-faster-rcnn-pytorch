@@ -4,7 +4,7 @@ import numpy as xp
 import six
 from six import __init__
 
-
+# 已知bbox和它的偏移，返回bbox偏移后的bbox
 def loc2bbox(src_bbox, loc):
     """Decode bounding boxes from bounding box offsets and scales.
 
@@ -76,7 +76,7 @@ def loc2bbox(src_bbox, loc):
 
     return dst_bbox
 
-
+# 求src_bbox和dst_bbox之间的偏移 (dy,dx,dh,dw)
 def bbox2loc(src_bbox, dst_bbox):
     """Encodes the source and the destination bounding boxes to "loc".
 
@@ -141,7 +141,7 @@ def bbox2loc(src_bbox, dst_bbox):
     loc = xp.vstack((dy, dx, dh, dw)).transpose()
     return loc
 
-
+# 求bbox_a和bbox_b两两之间的交并比
 def bbox_iou(bbox_a, bbox_b):
     """Calculate the Intersection of Unions (IoUs) between bounding boxes.
 
@@ -185,10 +185,6 @@ def bbox_iou(bbox_a, bbox_b):
 
 def __test():
     pass
-
-
-if __name__ == '__main__':
-    __test()
 
 
 def generate_anchor_base(base_size=16, ratios=[0.5, 1, 2],
@@ -242,3 +238,7 @@ def generate_anchor_base(base_size=16, ratios=[0.5, 1, 2],
             anchor_base[index, 2] = py + h / 2.
             anchor_base[index, 3] = px + w / 2.
     return anchor_base
+
+if __name__ == '__main__':
+    # __test()
+    generate_anchor_base()
